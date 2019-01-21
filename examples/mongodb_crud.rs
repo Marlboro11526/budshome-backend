@@ -14,7 +14,7 @@ fn main() {
     let coll = db.collection("contract_analysis_result");
 
     let doc = doc! {
-        "name": "花卉购销合同2",
+        "name": "花卉购销合同",
         "lack_items": [ "缺少争议解决条款", "缺少债权债务转让条款", "缺少合同解除条款" ],
         "risk_items": [ "担保物处理方式无效的风险", "连带担保的风险", "国家标准和行业标准不一致的风险" ],
     };
