@@ -33,7 +33,9 @@ fn main() {
     // start http server
     const IP_PORT:&str = "127.0.0.1:5555";
     server::new(move || {
-        App::new().resource("/", |r| r.method(http::Method::GET).with(index))
+        App::new().resource("/",
+                            |r| r.method(http::Method::GET)
+                                .with(index))
     }).bind(IP_PORT)
         .unwrap()
         .start();
