@@ -51,7 +51,6 @@ fn main() {
     }
 }
 
-
 fn log_query_duration(_client: Client, command_result: &CommandResult) {
     match command_result {
         &CommandResult::Success { duration, .. } => {
