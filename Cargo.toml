@@ -5,7 +5,6 @@ authors = ["zzy <9809920@qq.com>"]
 edition = "2018"
 
 [dependencies]
-actix = ""
 actix-web = ""
 mongodb = ""
 askama = ""
