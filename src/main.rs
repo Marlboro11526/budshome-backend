@@ -18,7 +18,7 @@ fn index(query: Query<HashMap<String, String>>) -> Result<HttpResponse> {
     let s = if let Some(name) = query.get("name") {
         UserTemplate {
             name: name,
-            text: "Welcome!",
+            text: "欢迎！",
         }.render()
             .unwrap()
     } else {
