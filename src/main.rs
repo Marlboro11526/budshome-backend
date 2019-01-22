@@ -33,15 +33,15 @@ fn main() {
     let sys = System::new("template-askama");
 
     // start http server
-    const IP_PORT:&str = "127.0.0.1:5555";
+    let addr = "127.0.0.1:5555";
     server::new(move || {
         App::new().resource("/",
                             |r| r.method(http::Method::GET)
                                 .with(index))
-    }).bind(IP_PORT)
+    }).bind(addr)
         .unwrap()
         .start();
 
-    println!("Started http server: {}", IP_PORT);
+    println!("Started http server: {}", addr);
     let _ = sys.run();
 }
