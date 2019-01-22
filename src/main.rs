@@ -21,9 +21,11 @@ fn index(query: Query<HashMap<String, String>>) -> Result<HttpResponse> {
             text: "欢迎！",
         }.render()
             .unwrap()
-    } else {
+    }
+    else {
         Index.render().unwrap()
     };
+
     Ok(HttpResponse::Ok().content_type("text/html").body(s))
 }
 
