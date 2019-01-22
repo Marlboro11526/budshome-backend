@@ -1,6 +1,6 @@
 use std::collections::HashMap;
 
-use actix_web::{http, server, App, HttpResponse, Query, Result};
+use actix_web::{actix::System, http, server, App, HttpResponse, Query, Result};
 use askama::Template;
 
 #[derive(Template)]
@@ -30,7 +30,7 @@ fn index(query: Query<HashMap<String, String>>) -> Result<HttpResponse> {
 }
 
 fn main() {
-    let sys = actix::System::new("template-askama");
+    let sys = System::new("template-askama");
 
     // start http server
     const IP_PORT:&str = "127.0.0.1:5555";
