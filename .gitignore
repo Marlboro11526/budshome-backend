@@ -6,6 +6,6 @@ Cargo.lock
 **/*.rs.bk
 
 .idea
-budshome-cms.iml
+budshome-backend.iml
 
 
