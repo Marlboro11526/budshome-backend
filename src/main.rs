@@ -8,8 +8,6 @@ use actix_web::{
 
 use bytes::BytesMut;
 use futures::{Future, Stream};
-use json::JsonValue;
-use json::object;
 
 #[derive(Debug, Serialize, Deserialize)]
 struct MyObj {
@@ -71,27 +69,6 @@ fn index_manual(req: &HttpRequest) -> Box<Future<Item = HttpResponse, Error = Er
         .responder()
 }
 
-/// This handler manually load request payload and parse json-rust
-fn index_mjsonrust(
-    req: &HttpRequest,
-) -> Box<Future<Item = HttpResponse, Error = Error>> {
-    req.payload()
-        .concat2()
-        .from_err()
-        .and_then(|body| {
-            // body is loaded, now we can deserialize json-rust
-            let result = json::parse(std::str::from_utf8(&body).unwrap()); // return Result
-            let injson: JsonValue = match result {
-                Ok(v) => v,
-                Err(e) => object!{"err" => e.to_string() },
-            };
-            Ok(HttpResponse::Ok()
-                .content_type("application/json")
-                .body(injson.dump()))
-        })
-        .responder()
-}
-
 fn main() {
     ::std::env::set_var("RUST_LOG", "actix_web=info");
     env_logger::init();
@@ -115,7 +92,6 @@ fn main() {
                     })
             })
             .resource("/manual", |r| r.method(http::Method::POST).f(index_manual))
-            .resource("/mjsonrust", |r| r.method(http::Method::POST).f(index_mjsonrust))
             .resource("/", |r| r.method(http::Method::POST).f(index))
     }).bind(addr)
         .unwrap()
