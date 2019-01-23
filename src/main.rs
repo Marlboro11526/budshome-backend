@@ -30,7 +30,7 @@ fn index(query: Query<HashMap<String, String>>) -> Result<HttpResponse> {
 }
 
 fn main() {
-    let sys = System::new("template-askama");
+    let sys = System::new("budshome-cms");
 
     // start http server
     let addr = "127.0.0.1:5555";
@@ -43,5 +43,8 @@ fn main() {
         .start();
 
     println!("Started http server: {}", addr);
+
     let _ = sys.run();
+
+    println!("Stopped http server: {}", addr);
 }
