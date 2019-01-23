@@ -12,7 +12,6 @@ env_logger = ""
 serde = ""
 serde_derive = ""
 serde_json = ""
-json = ""
 
 mongodb = ""
 
