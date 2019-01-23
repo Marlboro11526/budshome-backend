@@ -1,10 +1,21 @@
 [package]
-name = "budshome-cms"
+name = "budshome-backend"
 version = "0.1.0"
 authors = ["zzy <9809920@qq.com>"]
 edition = "2018"
 
 [dependencies]
-actix-web = ""
+bytes = ""
+futures = ""
+env_logger = ""
+
+serde = ""
+serde_derive = ""
+serde_json = ""
+json = ""
+
 mongodb = ""
-json = "*"
+
+actix-web = ""
+actix = ""
+
