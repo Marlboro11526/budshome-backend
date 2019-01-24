@@ -1,11 +1,10 @@
-use bytes::BytesMut;
-use futures::{Future, Stream};
-
 use actix_web::{
     App, AsyncResponder, error, Error, http, HttpMessage, HttpRequest,
     HttpResponse, Json, middleware, server,
 };
-use serde::{Serialize, Deserialize};
+use bytes::BytesMut;
+use futures::{Future, Stream};
+use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Serialize, Deserialize)]
 struct MyObj {
