@@ -1,12 +1,11 @@
-#[macro_use]
-extern crate serde_derive;
+use bytes::BytesMut;
+use futures::{Future, Stream};
 
 use actix_web::{
     App, AsyncResponder, error, Error, http, HttpMessage, HttpRequest,
     HttpResponse, Json, middleware, server,
 };
-use bytes::BytesMut;
-use futures::{Future, Stream};
+use serde::{Serialize, Deserialize};
 
 #[derive(Debug, Serialize, Deserialize)]
 struct MyObj {
