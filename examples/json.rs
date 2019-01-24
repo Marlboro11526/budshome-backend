@@ -1,4 +1,5 @@
-use serde::{Serialize, Deserialize};
+use serde::{Deserialize, Serialize};
+use serde_json::Result;
 
 #[derive(Serialize, Deserialize, Debug)]
 struct Point {
@@ -6,7 +7,7 @@ struct Point {
     y: i32,
 }
 
-fn json1() {
+fn json_point() {
     let point = Point { x: 1, y: 2 };
 
     // Convert the Point to a JSON string.
@@ -22,8 +23,39 @@ fn json1() {
     println!("deserialized = {:?}", deserialized);
 }
 
+#[derive(Serialize, Deserialize)]
+struct Person {
+    name: String,
+    age: u8,
+    phones: Vec<String>,
+}
+
+fn json_person() -> Result<()> {
+    // Some JSON input data as a &str. Maybe this comes from the user.
+    let data = r#"
+        {
+            "name": "John Doe",
+            "age": 43,
+            "phones": [
+                "+44 1234567",
+                "+44 2345678"
+            ]
+        }"#;
+
+    // Parse the string of data into a Person object. This is exactly the
+    // same function as the one that produced serde_json::Value above, but
+    // now we are asking it for a Person as output.
+    let p: Person = serde_json::from_str(data)?;
+
+    // Do things just like with any other Rust data structure.
+    println!("Please call {} at the number {}", p.name, p.phones[0]);
+
+    Ok(())
+}
+
 fn main() {
-    json1();
+    json_point();
+    json_person();
 }
 
 
