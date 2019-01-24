@@ -9,8 +9,7 @@ bytes = ""
 futures = ""
 env_logger = ""
 
-serde = ""
-serde_derive = ""
+serde = { version = "", features = ["derive"] }
 serde_json = ""
 
 mongodb = ""
