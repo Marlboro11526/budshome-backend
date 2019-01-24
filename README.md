@@ -1,7 +1,7 @@
 # budshome-cms
 A Rust CMS powered by actix-web, mongodb, react, and ant-design. https://budshome.com
 
-## [budshome-backend](https://github.com/budshome/budshome-backend)
+## budshome-backend
 - actix-web
 - serde
 - mongodb
