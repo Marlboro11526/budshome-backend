@@ -55,7 +55,7 @@ fn json_person() -> Result<()> {
 
 fn main() {
     json_point();
-    json_person();
+    json_person().unwrap();
 }
 
 
