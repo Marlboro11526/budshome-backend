@@ -1,22 +1,13 @@
-extern crate actix;
-extern crate actix_web;
-extern crate bytes;
-extern crate env_logger;
-extern crate futures;
-extern crate serde_json;
 #[macro_use]
 extern crate serde_derive;
-#[macro_use]
-extern crate json;
 
 use actix_web::{
-    error, http, middleware, server, App, AsyncResponder, Error, HttpMessage,
-    HttpRequest, HttpResponse, Json,
+    error, http, middleware, server, App, AsyncResponder, Error,
+    HttpMessage, HttpRequest, HttpResponse, Json,
 };
 
 use bytes::BytesMut;
 use futures::{Future, Stream};
-use json::JsonValue;
 
 #[derive(Debug, Serialize, Deserialize)]
 struct MyObj {
@@ -78,32 +69,12 @@ fn index_manual(req: &HttpRequest) -> Box<Future<Item = HttpResponse, Error = Er
         .responder()
 }
 
-/// This handler manually load request payload and parse json-rust
-fn index_mjsonrust(
-    req: &HttpRequest,
-) -> Box<Future<Item = HttpResponse, Error = Error>> {
-    req.payload()
-        .concat2()
-        .from_err()
-        .and_then(|body| {
-            // body is loaded, now we can deserialize json-rust
-            let result = json::parse(std::str::from_utf8(&body).unwrap()); // return Result
-            let injson: JsonValue = match result {
-                Ok(v) => v,
-                Err(e) => object!{"err" => e.to_string() },
-            };
-            Ok(HttpResponse::Ok()
-                .content_type("application/json")
-                .body(injson.dump()))
-        })
-        .responder()
-}
-
 fn main() {
     ::std::env::set_var("RUST_LOG", "actix_web=info");
     env_logger::init();
-    let sys = actix::System::new("json-example");
+    let sys = actix::System::new("budshome-backend");
 
+    let addr = "127.0.0.1:5555";
     server::new(|| {
         App::new()
             // enable logger
@@ -121,13 +92,17 @@ fn main() {
                     })
             })
             .resource("/manual", |r| r.method(http::Method::POST).f(index_manual))
-            .resource("/mjsonrust", |r| r.method(http::Method::POST).f(index_mjsonrust))
             .resource("/", |r| r.method(http::Method::POST).f(index))
-    }).bind("127.0.0.1:8080")
+    }).bind(addr)
         .unwrap()
         .shutdown_timeout(1)
         .start();
 
-    println!("Started http server: 127.0.0.1:8080");
+    println!("Started http server: {}", addr);
     let _ = sys.run();
+    println!("Stopped http server: {}", addr);
 }
+
+
+
+
