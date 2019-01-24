@@ -1,2 +1,9 @@
 # budshome-cms
-actix-web + mongodb
+
+## budshome-backend
+- mongodb
+- actix-web
+
+## budshome-frontend
+- react
+- ant-design
