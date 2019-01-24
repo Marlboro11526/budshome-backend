@@ -2,10 +2,9 @@
 extern crate serde_derive;
 
 use actix_web::{
-    error, http, middleware, server, App, AsyncResponder, Error,
-    HttpMessage, HttpRequest, HttpResponse, Json,
+    App, AsyncResponder, error, Error, http, HttpMessage, HttpRequest,
+    HttpResponse, Json, middleware, server,
 };
-
 use bytes::BytesMut;
 use futures::{Future, Stream};
 
