@@ -1,5 +1,5 @@
 use mongodb::{Bson, bson, doc};
-use mongodb::{Client, ThreadedClient, CommandResult};
+use mongodb::{Client, CommandResult, ThreadedClient};
 use mongodb::db::ThreadedDatabase;
 
 fn main() {
