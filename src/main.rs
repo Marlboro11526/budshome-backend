@@ -71,7 +71,7 @@ fn main() {
     env_logger::init();
     let sys = actix::System::new("budshome-backend");
 
-    let addr = "127.0.0.1:5555";
+    let addr = "0.0.0.0:5555";
     server::new(|| {
         App::new()
             // enable logger
