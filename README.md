@@ -8,6 +8,6 @@ A CMS(Contest Management System) written in Rust, implemented by actix-web, mong
 
 ## [budshome-frontend](https://github.com/budshome/budshome-frontend)
 - react
-- ant-design
+- material-ui
 
 
